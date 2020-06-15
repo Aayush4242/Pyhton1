@@ -1,0 +1,35 @@
+Dictionary Unions:
+
+1) One of my favorite new features with a sleek syntax. If we have two dictionaries a and b that we need to merge, we now use the union operators.
+We have the merge operator |:
+a = {1: 'a', 2: 'b', 3: 'c'}
+b = {4: 'd', 5: 'e'}
+c = a | b
+print(c)
+
+[Out]: {1: 'a', 2: 'b', 3: 'c', 4: 'd', 5: 'e'}
+
+
+2) And the update operator |=, which updates the original dictionary:
+a = {1: 'a', 2: 'b', 3: 'c'}
+b = {4: 'd', 5: 'e'}
+a |= b
+print(a)
+[Out]: {1: 'a', 2: 'b', 3: 'c', 4: 'd', 5: 'e'}
+
+
+3) If our dictionaries share a common key, the key-value pair in the second dictionary will be used:
+a = {1: 'a', 2: 'b', 3: 'c', 6: 'in both'}
+b = {4: 'd', 5: 'e', 6: 'but different'}
+print(a | b)
+[Out]: {1: 'a', 2: 'b', 3: 'c', 6: 'but different', 4: 'd', 5: 'e'}
+
+
+4)Dictionary Update with Iterables
+Another cool behavior of the |= operator is the ability to update the dictionary with new key-value pairs using an iterable object — like a list or generator:
+a = {'a': 'one', 'b': 'two'}
+b = ((i, i**2) for i in range(3))
+a |= b
+print(a)
+[Out]: {'a': 'one', 'b': 'two', 0: 0, 1: 1, 2: 4}
+If we attempt the same with the standard union operator | we will get a TypeError as it will only allow unions between dict types.
